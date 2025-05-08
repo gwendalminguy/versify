@@ -2,16 +2,16 @@
 
 Versify generates a neat and nicely designed multipage PDF lyrics booklet for any given album of any given artist, with a first page showing the album artwork and tracklist.
 
-## Description
+## 📋 Description
 
-When executed, the user is prompted for an artist name, then an album name. The first function (*get_album*) uses the *LyricsGenius* package to search for this album on the Genius.com website.
+When executed, the user is prompted for an artist name, then an album name. Versify will use the *LyricsGenius* library to search for this album on the [Genius](https://genius.com) website.
 If found, it will return a list of dictionnaries (one for each song) containing information such as the track number, title, lyrics, and also an URL for the artwork.
-The second function (*download_artwork*) uses this URL to download temporarily the artwork as an image file, that will be automatically deleted later.
-The third function (*create_pdf*) uses the *FPDF* package to create a PDF file with a first page containing the album artwork and the tracklist. Then, for each song containing lyrics (instrumental songs are ignored), the fourth function (*write_lyrics*) is called to create one (or more) page(s) and write the song title and its lyrics. Finally, the PDF file is saved locally.
+This URL will be used to download temporarily the artwork as an image file, that will be automatically deleted later.
+After this, Versify will use the *FPDF* library to create a PDF file with a first page containing the album artwork and the tracklist. Then, for each song containing lyrics (instrumental songs are ignored), Versify will create one (or more) page(s) and write the song title and its lyrics. Finally, the PDF file is saved locally.
 
-## Installation
+## ⚙️ Installation
 
-1. Cloning the repository
+**1. Cloning the repository**
 
 To use Versify, this repository must be cloned locally, using the following command:
 
@@ -19,7 +19,7 @@ To use Versify, this repository must be cloned locally, using the following comm
 $ git clone https://github.com/gwendalminguy/versify.git
 ```
 
-2. Setting a virtual environment
+**2. Setting a virtual environment**
 
 Although optionnal, setting a virtual environment is highly recommended before installing the requirements.
 This can be achieved using the following commands at the root of the Versify directory:
@@ -29,7 +29,7 @@ $ python3 -m venv venv
 $ source venv/bin/activate
 ```
 
-3. Installing the requirements
+**3. Installing the requirements**
 
 In order to work, Versify needs all the libraries from the requirements.txt file.
 They can be installed with the following command:
@@ -38,7 +38,13 @@ They can be installed with the following command:
 $ pip install -r requirements.txt
 ```
 
-## Usage
+## 🖥️ Usage
+
+Versify can be launched using the following command:
+
+```
+./script.py
+```
 
 ### Fonts:
 
@@ -62,7 +68,7 @@ Although a Genius API Client Access Token is provided in Versify, a new one migh
 
 Because of Genius API restrictions, using a VPN while executing Versify might result in a Forbidden Access Error (403), displaying **Genius Request Error** when *LyricsGenius* searches for the lyrics. For the same reasons, executing Versify from a VPS or a GitHub Codespace might result in the same error. Disabling any VPN and executing Versify from a locally installed IDE such as Visual Studio Code should resolve this problem.
 
-## Project Structure
+## 📂 Project Structure
 
 The project contains several files and directories, which are the following:
 
@@ -73,6 +79,6 @@ The project contains several files and directories, which are the following:
 | [`requirements.txt`](https://github.com/gwendalminguy/versify/blob/main/requirements.txt) | The text file listing requirements for installation. |
 | [`script.py`](https://github.com/gwendalminguy/versify/blob/main/script.py) | The python script file of Versify. |
 
-## Disclaimer
+## ⚠️ Disclaimer
 
 Since Versify uses Genius.com database to find lyrics and includes them in the final PDF file, the resulting file and its content must be limited to a personnal use only. **Any commercial use of the PDF file would constitute a _violation_ of the Genius.com conditions of use**, as stated in their [Terms of Service](https://genius.com/static/terms).
