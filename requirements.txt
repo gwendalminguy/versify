@@ -1,0 +1,4 @@
+fpdf2==2.8.2
+lyricsgenius==3.2.0
+pytest==8.3.4
+requests==2.32.3
