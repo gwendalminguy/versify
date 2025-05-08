@@ -15,16 +15,27 @@ def main():
 
     access_token = "x_nSCOcKUKwrG753-sM4DK8HGjs7kEHjJ-pZki5Kt6ja8Ux3sbvYjAKbcPaI4y_v"
     font = (args.font).lower()
-    artist = input("Artist: ").strip().lower().title()
-    album = input("Album: ").strip().lower().title()
-    
+
+    try:
+        artist = input("Artist: ").strip().lower().title()
+        album = input("Album: ").strip().lower().title()
+    except EOFError:
+        sys.exit("Script Interruption")
+
     songs = get_album(artist, album, access_token)
     artwork = download_artwork(artist, album, songs[0])
     create_pdf(artist, album, artwork, songs, font)
 
 
 def get_album(artist, album, access_token):
-    # Getting the lyrics for each song from Genius and the artwork URL
+    """
+    Gets the lyrics for each song from Genius and the artwork URL.
+
+    Parameters:
+    artist (string): name of the artist
+    album (string): name of the album
+    access_token (string): Genius API access token
+    """
     if artist == "" or album == "":
         sys.exit("Invalid Artist/Album")
     try:
@@ -32,19 +43,27 @@ def get_album(artist, album, access_token):
     except:
         sys.exit("Genius Request Error")
     else:
-        if result == None:
+        if result is None:
             sys.exit("No Genius Result")
         songs = []
         for track in result.tracks:
             song = track.song.to_dict()
             song["artwork"] = result.cover_art_url
             song["index"] = track.number
-            if not song["index"] == None:
+            if not song["index"] is None:
                 songs.append(song)
         return songs
 
 
 def download_artwork(artist, album, song):
+    """
+    Gets the album artwork from URL and saves it as JPG image file.
+
+    Parameters:
+    artist (string): name of the artist
+    album (string): name of the album
+    song (dictionnary): song information
+    """
     url = song["artwork"]
     try:
         response = requests.get(url)
@@ -60,8 +79,18 @@ def download_artwork(artist, album, song):
 
 
 def create_pdf(artist, album, artwork, songs, font):
-    # Creating the final PDF with FPPDF
+    """
+    Creates the final PDF using FPDF.
+    
+    Parameters:
+    artist (string): name of the artist
+    album (string): name of the album
+    artwork (string): path to the artwork image file
+    songs (list): list of dictionnaries containing song information
+    font: ...
+    """
     file_name = f"{artist} - {album}.pdf"
+
     class PDF(FPDF):
         def header(self):
             if self.page_no() != 1 and os.path.exists("graphics/background_lyrics.png"):
@@ -84,7 +113,7 @@ def create_pdf(artist, album, artwork, songs, font):
     pdf.add_page()
     pdf.set_xy(10, 10)
     pdf.image(artwork, x=30, y=30, w=150)
-    
+
     # Writing the tracklist on the first page
     pdf.set_xy(30, 190)
     pdf.set_font(font, style="B", size=18)
@@ -121,6 +150,17 @@ def create_pdf(artist, album, artwork, songs, font):
 
 
 def write_lyrics(document, font, index, title, lyrics, instrumental):
+    """
+    Writes the lyrics of a song on one or more page(s).
+
+    Parameters:
+    document: ...
+    font: ...
+    index: ...
+    title (string): title of the song
+    lyrics (string): lyrics of the song
+    instrumental:
+    """
     if not instrumental:
         try:
             document.normalize_text(lyrics)
