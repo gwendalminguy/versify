@@ -11,11 +11,32 @@ The third function (*create_pdf*) uses the *FPDF* package to create a PDF file w
 
 ## Installation
 
-* Cloning this repository:
+1. Cloning the repository
 
-* Setting a virtual environment:
+To use Versify, this repository must be cloned locally, using the following command:
 
-* Installing the requirements:
+```
+$ git clone https://github.com/gwendalminguy/versify.git
+```
+
+2. Setting a virtual environment
+
+Although optionnal, setting a virtual environment is highly recommended before installing the requirements.
+This can be achieved using the following commands at the root of the Versify directory:
+
+```
+$ python3 -m venv venv
+$ source venv/bin/activate
+```
+
+3. Installing the requirements
+
+In order to work, Versify needs all the libraries from the requirements.txt file.
+They can be installed with the following command:
+
+```
+$ pip install -r requirements.txt
+```
 
 ## Usage
 
@@ -23,7 +44,7 @@ The third function (*create_pdf*) uses the *FPDF* package to create a PDF file w
 
 Although not required, Versify can be executed with a font other than the default one. To do so, the desired TTF font must first be installed in the *fonts* directory. This font can then be used by calling it as a command-line argument with **-f** or **--font**, followed by the name of the font family (without the extension):
 
-`python project.py -f dejavusans` or `python project.py --font dejavusans`
+`./script.py -f dejavusans` or `./script.py --font dejavusans`
 
 It can take up to thirty seconds for Versify to execute, since the *LyricsGenius* package makes several API requests and uses *BeautifulSoup* for web scraping each song webpage from Genius.com to find its lyrics. Once done, the script will print for each song the song title followed by either **Done** or **No Lyrics** when successful.
 
