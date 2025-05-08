@@ -62,6 +62,17 @@ Although a Genius API Client Access Token is provided in Versify, a new one migh
 
 Because of Genius API restrictions, using a VPN while executing Versify might result in a Forbidden Access Error (403), displaying **Genius Request Error** when *LyricsGenius* searches for the lyrics. For the same reasons, executing Versify from a VPS or a GitHub Codespace might result in the same error. Disabling any VPN and executing Versify from a locally installed IDE such as Visual Studio Code should resolve this problem.
 
+## Project Structure
+
+The project contains several files and directories, which are the following:
+
+| Files | Description |
+| :---- | :---------- |
+| [`fonts/`](https://github.com/gwendalminguy/versify/tree/main/fonts) | The directory containing several open source TrueType fonts. |
+| [`graphics/`](https://github.com/gwendalminguy/versify/tree/main/graphics) | The directory containing PNG background images. |
+| [`requirements.txt`](https://github.com/gwendalminguy/versify/blob/main/requirements.txt) | The text file listing requirements for installation. |
+| [`script.py`](https://github.com/gwendalminguy/versify/blob/main/script.py) | The python script file of Versify. |
+
 ## Disclaimer
 
 Since Versify uses Genius.com database to find lyrics and includes them in the final PDF file, the resulting file and its content must be limited to a personnal use only. **Any commercial use of the PDF file would constitute a _violation_ of the Genius.com conditions of use**, as stated in their [Terms of Service](https://genius.com/static/terms).
