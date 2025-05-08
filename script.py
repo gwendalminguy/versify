@@ -34,6 +34,9 @@ def get_album(artist, album, access_token):
     artist (string): name of the artist
     album (string): name of the album
     access_token (string): Genius API access token
+
+    Return:
+    list: list of dictionnaries containing song information
     """
     if artist == "" or album == "":
         sys.exit("Invalid Artist/Album")
@@ -61,6 +64,9 @@ def download_artwork(songs):
 
     Parameters:
     songs (list): list of dictionnaries containing song information
+
+    Return:
+    string: path to the artwork image file
     """
     artist = songs[0]['artist']
     album = songs[0]['album']
@@ -155,7 +161,7 @@ def write_lyrics(document, font, song):
     Writes the lyrics of a song on one or more page(s).
 
     Parameters:
-    document (...): ...
+    document (object): PDF document
     font (string): font to use
     song (dictionnary): song information
     """
