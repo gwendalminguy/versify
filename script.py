@@ -98,18 +98,23 @@ def create_pdf(artist, album, artwork, songs, font):
             pdf.set_xy(105, 116 + i)
         else:
             break
-        if len(song["title"]) > 20 and len(songs) >= (song["index"] + 12):
-            pdf.cell(0, 0,  text=f"{song["index"]}. {(song["title"][:20]).upper().strip()}...\n")
-        elif len(song["title"]) > 20 and song["index"] > 12:
-            pdf.cell(0, 0,  text=f"{song["index"]}. {(song["title"][:20]).upper().strip()}...\n")
-        else:
-            pdf.cell(0, 0,  text=f"{song["index"]}. {(song["title"]).upper()}\n")
-        i += 7
+        try:
+            if len(song["title"]) > 20 and len(songs) >= (song["index"] + 12):
+                pdf.cell(0, 0,  text=f"{song["index"]}. {(song["title"][:20]).upper().strip()}...\n")
+            elif len(song["title"]) > 20 and song["index"] > 12:
+                pdf.cell(0, 0,  text=f"{song["index"]}. {(song["title"][:20]).upper().strip()}...\n")
+            else:
+                pdf.cell(0, 0,  text=f"{song["index"]}. {(song["title"]).upper()}\n")
+        except:
+            pdf.cell(0, 0,  text=f"{song["index"]}.\n")
+        i+= 7
 
     # Writing the lyrics and removing artwork file
     pdf.set_auto_page_break(auto=True, margin=30)
+    print("\n")
     for song in songs:
         write_lyrics(pdf, font, song["index"], song["title"], song["lyrics"], song["instrumental"])
+    print("\n")
     pdf.output(file_name)
     if os.path.exists(artwork):
         os.remove(artwork)
@@ -120,7 +125,7 @@ def write_lyrics(document, font, index, title, lyrics, instrumental):
         try:
             document.normalize_text(lyrics)
         except:
-            print((f"{index}. {title}:").ljust(50), (f"{'Encoding Error'}").rjust(15))
+            print((f"{index}. {title}:").ljust(75), (f"{'Encoding Error'}").rjust(15))
         else:
             lyrics = "\n".join(lyrics.splitlines()[1:])
             document.add_page()
@@ -129,9 +134,9 @@ def write_lyrics(document, font, index, title, lyrics, instrumental):
             document.set_xy(30, 50)
             document.set_font(font, style="", size=12)
             document.multi_cell(0, 5, text=lyrics, align="C")
-            print((f"{index}. {title}:").ljust(50), (f"{'Done'}").rjust(15))
+            print((f"{index}. {title}:").ljust(75), (f"{'Done'}").rjust(15))
     else:
-        print((f"{index}. {title}:").ljust(50), (f"{'No Lyrics'}").rjust(15))
+        print((f"{index}. {title}:").ljust(75), (f"{'No Lyrics'}").rjust(15))
 
 
 if __name__ == "__main__":
