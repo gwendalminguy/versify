@@ -48,13 +48,13 @@ $ ./script.py
 
 ### Fonts:
 
-Although not required, Versify can be executed with a font other than the default one (which is set to be *times*). To do so, the desired TTF font must first be installed in the [fonts/](https://github.com/gwendalminguy/versify/tree/main/fonts) directory. This font can then be used by calling it as a command-line argument with **-f** or **--font**, followed by the name of the font family (without the extension):
+Although not required, Versify can be executed with a font other than the default one (which is set to be *times*). To do so, the desired TTF font must first be installed in the `fonts/` directory. This font can then be used by calling it as a command-line argument with **-f** or **--font**, followed by the name of the font family (without the extension):
 
 ```
-$ ./script.py -f <font>`
+$ ./script.py -f <font>
 ```
 
-The [fonts/](https://github.com/gwendalminguy/versify/tree/main/fonts) directory already contains several usable fonts, which are the following:
+The `fonts/` directory already contains several usable fonts, which are the following:
 
 - dejavusans
 - dejavuserif
@@ -73,13 +73,13 @@ The script will print **Encoding Error** if *FPDF* wasn't able to write the lyri
 
 ### Graphics:
 
-Versify is provided with a [graphics/](https://github.com/gwendalminguy/versify/tree/main/graphics) directory containting two background images ([background_cover.png](https://github.com/gwendalminguy/versify/tree/main/graphics/background_cover.png) and [background_lyrics.png](https://github.com/gwendalminguy/versify/tree/main/graphics/background_lyrics.png)), created with Adobe Illustrator. The Adobe Illustrator file is also included ([background.ai](https://github.com/gwendalminguy/versify/tree/main/graphics/background.ai)). If needed, this file can be used to modify these images.
+Versify is provided with a `graphics/` directory containting two background images (`background_cover.png` and `background_lyrics.png`), created with Adobe Illustrator. The Adobe Illustrator file is also included (`background.ai`). If needed, this file can be used to modify these images.
 
-In this case, after modifying the images in Adobe Illustrator, they should be exported as PNG images in the [graphics/](https://github.com/gwendalminguy/versify/tree/main/graphics) directory to replace the default ones (and named exactly the same). Versify will still work without these images, but the background for the whole final PDF will then be blank.
+In this case, after modifying the images in Adobe Illustrator, they should be exported as PNG images in the `graphics/` directory to replace the default ones (and named exactly the same). Versify will still work without these images, but the background for the whole final PDF will then be blank.
 
 ### Warning:
 
-Although a Genius API Client Access Token is provided in Versify, a new one might be required, and can be generated through [Genius API Client Management](https://genius.com/api-clients/new). A Genius account is needed to create a new API Client. The old Client Access Token can then simply be replaced by the new one by changing the value of the *access_token* variable in the *main* function of [script.py](https://github.com/gwendalminguy/versify/tree/main/script.py).
+Although a Genius API Client Access Token is provided in Versify, a new one might be required, and can be generated through [Genius API Client Management](https://genius.com/api-clients/new). A Genius account is needed to create a new API Client. The old Client Access Token can then simply be replaced by the new one by changing the value of the *access_token* variable in the *main* function of the `script.py` file.
 
 Because of Genius API restrictions, using a VPN while executing Versify might result in a Forbidden Access Error (403), displaying **Genius Request Error** when *LyricsGenius* searches for the lyrics. For the same reasons, executing Versify from a VPS or a GitHub Codespace might result in the same error. Disabling any VPN and executing Versify from a locally installed IDE such as Visual Studio Code should resolve this problem.
 
