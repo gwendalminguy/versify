@@ -23,9 +23,8 @@ def main():
         sys.exit("Script Interruption")
 
     songs = get_album(artist, album, access_token)
-    artwork = download_artwork(artist, album, songs[0])
-    create_pdf(artist, album, artwork, songs, font)
-
+    artwork = download_artwork(songs)
+    create_pdf(artwork, songs, font)
 
 def get_album(artist, album, access_token):
     """
@@ -50,21 +49,22 @@ def get_album(artist, album, access_token):
             song = track.song.to_dict()
             song["artwork"] = result.cover_art_url
             song["index"] = track.number
+            song["album"] = album
             if not song["index"] is None:
                 songs.append(song)
         return songs
 
 
-def download_artwork(artist, album, song):
+def download_artwork(songs):
     """
     Gets the album artwork from URL and saves it as JPG image file.
 
     Parameters:
-    artist (string): name of the artist
-    album (string): name of the album
-    song (dictionnary): song information
+    songs (list): list of dictionnaries containing song information
     """
-    url = song["artwork"]
+    artist = songs[0]['artist']
+    album = songs[0]['album']
+    url = songs[0]["artwork"]
     try:
         response = requests.get(url)
     except requests.HTTPError:
@@ -78,17 +78,17 @@ def download_artwork(artist, album, song):
         return artwork
 
 
-def create_pdf(artist, album, artwork, songs, font):
+def create_pdf(artwork, songs, font):
     """
     Creates the final PDF using FPDF.
     
     Parameters:
-    artist (string): name of the artist
-    album (string): name of the album
     artwork (string): path to the artwork image file
     songs (list): list of dictionnaries containing song information
-    font: ...
+    font (string): font to use
     """
+    artist = songs[0]['artist']
+    album = songs[0]['album']
     file_name = f"{artist} - {album}.pdf"
 
     class PDF(FPDF):
@@ -98,6 +98,7 @@ def create_pdf(artist, album, artwork, songs, font):
             elif os.path.exists("graphics/background_cover.png"):
                 pdf.image("graphics/background_cover.png", x=0, y=0, w=210)
 
+    # Setting parameters for PDF file
     pdf = PDF("P", "mm", (210, 297))
     if font not in ["courier", "helvetica", "times"]:
         try:
@@ -142,41 +143,38 @@ def create_pdf(artist, album, artwork, songs, font):
     pdf.set_auto_page_break(auto=True, margin=30)
     print("\n")
     for song in songs:
-        write_lyrics(pdf, font, song["index"], song["title"], song["lyrics"], song["instrumental"])
+        write_lyrics(pdf, font, song)
     print("\n")
     pdf.output(file_name)
     if os.path.exists(artwork):
         os.remove(artwork)
 
 
-def write_lyrics(document, font, index, title, lyrics, instrumental):
+def write_lyrics(document, font, song):
     """
     Writes the lyrics of a song on one or more page(s).
 
     Parameters:
-    document: ...
-    font: ...
-    index: ...
-    title (string): title of the song
-    lyrics (string): lyrics of the song
-    instrumental:
+    document (...): ...
+    font (string): font to use
+    song (dictionnary): song information
     """
-    if not instrumental:
+    if not song['instrumental']:
         try:
-            document.normalize_text(lyrics)
+            document.normalize_text(song['lyrics'])
         except:
-            print((f"{index}. {title}:").ljust(75), (f"{'Encoding Error'}").rjust(15))
+            print((f"{song['index']}. {song['title']}:").ljust(75), (f"{'Encoding Error'}").rjust(15))
         else:
-            lyrics = "\n".join(lyrics.splitlines()[1:])
+            lyrics = "\n".join(song['lyrics'].splitlines()[1:])
             document.add_page()
             document.set_font(font, style="B", size=18)
-            document.cell(0, 0, text=title.title(), align="C")
+            document.cell(0, 0, text=song['title'].title(), align="C")
             document.set_xy(30, 50)
             document.set_font(font, style="", size=12)
             document.multi_cell(0, 5, text=lyrics, align="C")
-            print((f"{index}. {title}:").ljust(75), (f"{'Done'}").rjust(15))
+            print((f"{song['index']}. {song['title']}:").ljust(75), (f"{'Done'}").rjust(15))
     else:
-        print((f"{index}. {title}:").ljust(75), (f"{'No Lyrics'}").rjust(15))
+        print((f"{song['index']}. {song['title']}:").ljust(75), (f"{'No Lyrics'}").rjust(15))
 
 
 if __name__ == "__main__":
