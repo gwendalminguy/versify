@@ -141,10 +141,10 @@ def create_pdf(artwork, songs, font):
 
     # Writing the lyrics and removing artwork file
     pdf.set_auto_page_break(auto=True, margin=30)
-    print("\n")
+    print("")
     for song in songs:
         write_lyrics(pdf, font, song)
-    print("\n")
+    print("")
     pdf.output(file_name)
     if os.path.exists(artwork):
         os.remove(artwork)
@@ -160,10 +160,12 @@ def write_lyrics(document, font, song):
     song (dictionnary): song information
     """
     if not song['instrumental']:
+        index = song['index']
+        title = song['title'].title()
         try:
             document.normalize_text(song['lyrics'])
         except:
-            print((f"{song['index']}. {song['title']}:").ljust(75), (f"{'Encoding Error'}").rjust(15))
+            print((f"{index}. {title}:").ljust(75), (f"{'Encoding Error'}").rjust(15))
         else:
             lyrics = "\n".join(song['lyrics'].splitlines()[1:])
             document.add_page()
@@ -172,9 +174,9 @@ def write_lyrics(document, font, song):
             document.set_xy(30, 50)
             document.set_font(font, style="", size=12)
             document.multi_cell(0, 5, text=lyrics, align="C")
-            print((f"{song['index']}. {song['title']}:").ljust(75), (f"{'Done'}").rjust(15))
+            print((f"{index}. {title}:").ljust(75), (f"{'Done'}").rjust(15))
     else:
-        print((f"{song['index']}. {song['title']}:").ljust(75), (f"{'No Lyrics'}").rjust(15))
+        print((f"{index}. {title}:").ljust(75), (f"{'No Lyrics'}").rjust(15))
 
 
 if __name__ == "__main__":
