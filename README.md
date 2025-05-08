@@ -71,7 +71,7 @@ The `fonts/` directory already contains several usable fonts, which are the foll
 - umpush
 - waree
 
-It can take a while for Versify to execute, since the *LyricsGenius* package makes several API requests and uses *BeautifulSoup* for web scraping each song webpage from Genius.com to find its lyrics. Once done, the script will print to the terminal, for each song, the song title followed by either **Done** or **No Lyrics** when successful.
+It can take a while for Versify to execute, since the *LyricsGenius* library makes several API requests and uses *BeautifulSoup* for web-scraping each song's webpage from [Genius](https://genius.com) to find its lyrics. Once done, the script will print to the terminal, for each song, the song title followed by either **Done** or **No Lyrics** when successful.
 
 The script will print **Encoding Error** if *FPDF* wasn't able to write the lyrics with the chosen font. This problem might come from unsupported characters that can't be used by the *FPDF* built-in fonts, and can be solved by using a TrueType font by specifying its name as a command-line argument.
 
@@ -96,7 +96,7 @@ The project contains several files and directories, which are the following:
 | [`fonts/`](https://github.com/gwendalminguy/versify/tree/main/fonts) | The directory containing several open source TrueType fonts. |
 | [`graphics/`](https://github.com/gwendalminguy/versify/tree/main/graphics) | The directory containing PNG background images. |
 | [`requirements.txt`](https://github.com/gwendalminguy/versify/blob/main/requirements.txt) | The text file listing requirements for installation. |
-| [`script.py`](https://github.com/gwendalminguy/versify/blob/main/script.py) | The python script file of Versify. |
+| [`script.py`](https://github.com/gwendalminguy/versify/blob/main/script.py) | The python file containing the script. |
 
 ## ⚠️ Disclaimer
 
