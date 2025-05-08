@@ -100,6 +100,8 @@ def create_pdf(artist, album, artwork, songs, font):
             break
         if len(song["title"]) > 20 and len(songs) >= (song["index"] + 12):
             pdf.cell(0, 0,  text=f"{song["index"]}. {(song["title"][:20]).upper().strip()}...\n")
+        elif len(song["title"]) > 20 and song["index"] > 12:
+            pdf.cell(0, 0,  text=f"{song["index"]}. {(song["title"][:20]).upper().strip()}...\n")
         else:
             pdf.cell(0, 0,  text=f"{song["index"]}. {(song["title"]).upper()}\n")
         i += 7
