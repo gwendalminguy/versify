@@ -9,19 +9,21 @@ If found, it will return a list of dictionnaries (one for each song) containing 
 The second function (*download_artwork*) uses this URL to download temporarily the artwork as an image file, that will be automatically deleted later.
 The third function (*create_pdf*) uses the *FPDF* package to create a PDF file with a first page containing the album artwork and the tracklist. Then, for each song containing lyrics (instrumental songs are ignored), the fourth function (*write_lyrics*) is called to create one (or more) page(s) and write the song title and its lyrics. Finally, the PDF file is saved locally.
 
+## Installation
+
+* Cloning this repository:
+
+* Setting a virtual environment:
+
+* Installing the requirements:
+
 ## Usage
 
 ### Fonts:
 
 Although not required, Versify can be executed with a font other than the default one. To do so, the desired TTF font must first be installed in the *fonts* directory. This font can then be used by calling it as a command-line argument with **-f** or **--font**, followed by the name of the font family (without the extension):
 
-```
-python project.py -f dejavusans
-```
-or
-```
-python project.py --font dejavusans
-```
+`python project.py -f dejavusans` or `python project.py --font dejavusans`
 
 It can take up to thirty seconds for Versify to execute, since the *LyricsGenius* package makes several API requests and uses *BeautifulSoup* for web scraping each song webpage from Genius.com to find its lyrics. Once done, the script will print for each song the song title followed by either **Done** or **No Lyrics** when successful.
 
