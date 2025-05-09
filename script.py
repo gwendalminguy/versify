@@ -167,7 +167,10 @@ def write_lyrics(document, font, song):
     """
     if not song['instrumental']:
         index = song['index']
-        title = song['title'].title()
+        if len(song['title']) < 45:
+            title = song['title'].title()
+        else:
+            title = song['title'][:40].title() + "..."
         try:
             document.normalize_text(song['lyrics'])
         except:
@@ -176,7 +179,7 @@ def write_lyrics(document, font, song):
             lyrics = "\n".join(song['lyrics'].splitlines()[1:])
             document.add_page()
             document.set_font(font, style="B", size=18)
-            document.cell(0, 0, text=song['title'].title(), align="C")
+            document.cell(0, 0, text=title, align="C")
             document.set_xy(30, 50)
             document.set_font(font, style="", size=12)
             document.multi_cell(0, 5, text=lyrics, align="C")
