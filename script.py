@@ -165,12 +165,12 @@ def write_lyrics(document, font, song):
     font (string): font to use
     song (dictionnary): song information
     """
+    index = song['index']
+    if len(song['title']) < 45:
+        title = song['title'].title()
+    else:
+        title = song['title'][:40].title() + "..."
     if not song['instrumental']:
-        index = song['index']
-        if len(song['title']) < 45:
-            title = song['title'].title()
-        else:
-            title = song['title'][:40].title() + "..."
         try:
             document.normalize_text(song['lyrics'])
         except:
