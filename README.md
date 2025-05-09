@@ -7,6 +7,17 @@ Versify is a simple tool generating a neat and nicely designed multipage PDF lyr
 When executed, the user is prompted for an artist name, then an album name. Versify will use the *LyricsGenius* library to search for this album on the [Genius](https://genius.com) website. If found, it will create a list of dictionnaries (one for each song) containing information such as the track number, title, lyrics, and also an URL for the artwork.
 This URL will be used to download temporarily the artwork as an image file, that will be automatically deleted later. After this, Versify will use the *FPDF* library to create a PDF file with a first page containing the album artwork and the tracklist. Then, for each song containing lyrics (instrumental songs are ignored), Versify will create one (or more) page(s) and write the song title and its lyrics. Finally, the PDF file is saved locally.
 
+## 📂 Project Structure
+
+The project contains several files and directories, which are the following:
+
+| Files | Description |
+| :---- | :---------- |
+| [`fonts/`](https://github.com/gwendalminguy/versify/tree/main/fonts) | The directory containing several open source TrueType fonts. |
+| [`graphics/`](https://github.com/gwendalminguy/versify/tree/main/graphics) | The directory containing PNG background images. |
+| [`requirements.txt`](https://github.com/gwendalminguy/versify/blob/main/requirements.txt) | The text file listing requirements for installation. |
+| [`script.py`](https://github.com/gwendalminguy/versify/blob/main/script.py) | The python file containing the script. |
+
 ## ⚙️ Installation
 
 In order to install Versify, the three following steps should be done:
@@ -38,10 +49,16 @@ $ pip install -r requirements.txt
 
 ## 🖥️ Usage
 
-Versify can be launched using the following command:
+If a virtual environment was set at the root of the directory, Versify can be launched using the following command:
 
 ```
 $ ./script.py
+```
+
+Otherwise, Versify can be launched this way:
+
+```
+$ python3 script.py
 ```
 
 The user will be prompted for an artist name, then an album name. It can take up to thirty seconds for Versify to find the lyrics and generate the PDF file, please be patient. Once done with Versify, the virtual environment should be disabled:
@@ -52,7 +69,7 @@ $ deactivate
 
 ### Fonts:
 
-Although not required, Versify can be executed with a font other than the default one (which is set to be *times*). To do so, the desired TrueType font must first be installed in the `fonts/` directory. This font can then be used by calling it as a command-line argument with **-f** or **--font**, followed by the name of the font family (without the extension):
+Although not required, Versify can be launched with a font other than the default one (which is set to be *times*). To do so, the desired TrueType font must first be installed in the `fonts/` directory. This font can then be used by calling it as a command-line argument with **-f** or **--font**, followed by the name of the font family (without the extension):
 
 ```
 $ ./script.py -f <font>
@@ -86,17 +103,6 @@ In this case, after modifying the images in Adobe Illustrator, they should be ex
 Although a Genius API Client Access Token is provided in Versify, a new one might be required, and can be generated through [Genius API Client Management](https://genius.com/api-clients/new). A Genius account is needed to create a new API Client. The old Client Access Token can then simply be replaced by the new one by changing the value of the *access_token* variable at the beginning of the *main* function of the `script.py` file.
 
 Because of Genius API restrictions, using a VPN while executing Versify might result in a Forbidden Access Error (403), displaying **Genius Request Error** when *LyricsGenius* searches for the lyrics. For the same reasons, executing Versify from a VPS or a GitHub Codespace might result in the same error. Disabling any VPN and executing Versify from a locally installed IDE such as Visual Studio Code should resolve this problem.
-
-## 📂 Project Structure
-
-The project contains several files and directories, which are the following:
-
-| Files | Description |
-| :---- | :---------- |
-| [`fonts/`](https://github.com/gwendalminguy/versify/tree/main/fonts) | The directory containing several open source TrueType fonts. |
-| [`graphics/`](https://github.com/gwendalminguy/versify/tree/main/graphics) | The directory containing PNG background images. |
-| [`requirements.txt`](https://github.com/gwendalminguy/versify/blob/main/requirements.txt) | The text file listing requirements for installation. |
-| [`script.py`](https://github.com/gwendalminguy/versify/blob/main/script.py) | The python file containing the script. |
 
 ## ⚠️ Disclaimer
 
