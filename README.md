@@ -5,7 +5,7 @@ Versify is a simple tool generating a neat and nicely designed multipage PDF lyr
 ## 📋 Description
 
 When executed, the user is prompted for an artist name, then an album name. Versify will use the *LyricsGenius* library to search for this album on the [Genius](https://genius.com) website. If found, it will create a list of dictionnaries (one for each song) containing information such as the track number, title, lyrics, and also an URL for the artwork.
-This URL will be used to download temporarily the artwork as an image file, that will be automatically deleted later. After this, Versify will use the *FPDF* library to create a PDF file with a first page containing the album artwork and the tracklist. Then, for each song containing lyrics (instrumental songs are ignored), Versify will create one (or more) page(s) and write the song title and its lyrics. Finally, the PDF file is saved locally.
+This URL will be used to download temporarily the artwork as an image file, that will be automatically deleted later. After this, Versify will use the *FPDF* library to create a PDF file with a first page containing the album artwork and the tracklist. Then, for each song containing lyrics (instrumental songs are ignored), Versify will create one (or more) page(s) and write the song title and its lyrics. Finally, the PDF file is saved locally in the `pdf/` directory.
 
 ## 📂 Project Structure
 
@@ -32,9 +32,10 @@ $ git clone https://github.com/gwendalminguy/versify.git
 
 **2. Setting a virtual environment**
 
-Setting a virtual environment is necessary before installing the requirements. This will prevent from installing libraries globally, to avoid potential conflicts. It will also help ensure each library is installed with the right version. Setting a virtual environment can be achieved using the following commands at the root of the Versify directory:
+Setting a virtual environment is necessary before installing the requirements, and must be done at the root of the Versify directory. This will prevent from installing libraries globally, to avoid potential conflicts. It will also help ensure each library is installed with the right version. Setting a virtual environment can be achieved using the following commands:
 
 ```
+$ cd versify/
 $ python3 -m venv venv
 $ source venv/bin/activate
 ```
@@ -69,7 +70,7 @@ Although not required, Versify can be launched with a font other than the defaul
 $ ./script.py -f <font>
 ```
 
-The `fonts/` directory already contains several usable fonts, which are the following:
+The `fonts/` directory already contains several usable TrueType fonts, which are the following:
 
 - dejavusans
 - dejavuserif
@@ -84,7 +85,7 @@ The `fonts/` directory already contains several usable fonts, which are the foll
 
 It can take a while for Versify to execute, since the *LyricsGenius* library makes several API requests and uses *BeautifulSoup* for web-scraping each song's webpage from [Genius](https://genius.com) to find its lyrics. Once done, the script will print to the terminal, for each song, the song title followed by either **Done** or **No Lyrics** when successful.
 
-The script will print **Encoding Error** if *FPDF* wasn't able to write the lyrics with the chosen font. This problem might come from unsupported characters that can't be used by the chosen font, and can be solved by replacing it with a TrueType font.
+The script will print **Encoding Error** if *FPDF* wasn't able to write the lyrics with the chosen font. This problem might come from unsupported characters that can't be handled by the font, and can be solved by replacing it with a TrueType font.
 
 ### Graphics:
 
