@@ -32,7 +32,7 @@ $ git clone https://github.com/gwendalminguy/versify.git
 
 **2. Setting a virtual environment**
 
-Although optionnal, setting a virtual environment is highly recommended before installing the requirements. This will prevent from installing libraries globally, to avoid potential conflicts. It will also help ensure each library is installed with the right version. Setting a virtual environment can be achieved using the following commands at the root of the Versify directory:
+Setting a virtual environment is necessary before installing the requirements. This will prevent from installing libraries globally, to avoid potential conflicts. It will also help ensure each library is installed with the right version. Setting a virtual environment can be achieved using the following commands at the root of the Versify directory:
 
 ```
 $ python3 -m venv venv
@@ -49,16 +49,10 @@ $ pip install -r requirements.txt
 
 ## 🖥️ Usage
 
-If a virtual environment was set at the root of the directory, Versify can be launched using the following command:
+Versify can be launched using the following command:
 
 ```
 $ ./script.py
-```
-
-Otherwise, Versify can be launched this way:
-
-```
-$ python3 script.py
 ```
 
 The user will be prompted for an artist name, then an album name. It can take up to thirty seconds for Versify to find the lyrics and generate the PDF file, please be patient. Once done with Versify, the virtual environment should be disabled:
@@ -69,7 +63,7 @@ $ deactivate
 
 ### Fonts:
 
-Although not required, Versify can be launched with a font other than the default one (which is set to be *times*). To do so, the desired TrueType font must first be installed in the `fonts/` directory. This font can then be used by calling it as a command-line argument with **-f** or **--font**, followed by the name of the font family (without the extension):
+Although not required, Versify can be launched with a font other than the default one (which is set to be *dejavusans*). To do so, the desired TrueType font must first be installed in the `fonts/` directory. This font can then be used by calling it as a command-line argument with **-f** or **--font**, followed by the name of the font family (without the extension):
 
 ```
 $ ./script.py -f <font>
@@ -90,7 +84,7 @@ The `fonts/` directory already contains several usable fonts, which are the foll
 
 It can take a while for Versify to execute, since the *LyricsGenius* library makes several API requests and uses *BeautifulSoup* for web-scraping each song's webpage from [Genius](https://genius.com) to find its lyrics. Once done, the script will print to the terminal, for each song, the song title followed by either **Done** or **No Lyrics** when successful.
 
-The script will print **Encoding Error** if *FPDF* wasn't able to write the lyrics with the chosen font. This problem might come from unsupported characters that can't be used by the *FPDF* built-in fonts, and can be solved by using a TrueType font by specifying its name as a command-line argument.
+The script will print **Encoding Error** if *FPDF* wasn't able to write the lyrics with the chosen font. This problem might come from unsupported characters that can't be used by the chosen font, and can be solved by replacing it with a TrueType font.
 
 ### Graphics:
 

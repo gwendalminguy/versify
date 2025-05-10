@@ -10,7 +10,7 @@ import os
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-f", "--font", default="times", type=str, help="font to use")
+    parser.add_argument("-f", "--font", default="dejavusans", type=str, help="font to use")
     args = parser.parse_args()
 
     access_token = "x_nSCOcKUKwrG753-sM4DK8HGjs7kEHjJ-pZki5Kt6ja8Ux3sbvYjAKbcPaI4y_v"
@@ -136,11 +136,11 @@ def create_pdf(artwork, songs, font):
             break
         try:
             if len(song["title"]) > 20 and len(songs) >= (song["index"] + 12):
-                pdf.cell(0, 0,  text=f"{song["index"]}. {(song["title"][:20]).upper().strip()}...\n")
+                pdf.cell(0, 0,  text=f"{song["index"]}. {(song["title"][:20]).upper().strip()}...")
             elif len(song["title"]) > 20 and song["index"] > 12:
-                pdf.cell(0, 0,  text=f"{song["index"]}. {(song["title"][:20]).upper().strip()}...\n")
+                pdf.cell(0, 0,  text=f"{song["index"]}. {(song["title"][:20]).upper().strip()}...")
             else:
-                pdf.cell(0, 0,  text=f"{song["index"]}. {(song["title"]).upper()}\n")
+                pdf.cell(0, 0,  text=f"{song["index"]}. {(song["title"]).upper()}")
         except:
             pdf.cell(0, 0,  text=f"{song["index"]}.\n")
         i+= 7
