@@ -95,7 +95,7 @@ def create_pdf(artwork, songs, font):
     """
     artist = songs[0]['artist']
     album = songs[0]['album']
-    file_name = f"{artist} - {album}.pdf"
+    file_name = f"pdf/{artist} - {album}.pdf"
 
     class PDF(FPDF):
         def header(self):
@@ -151,6 +151,8 @@ def create_pdf(artwork, songs, font):
     for song in songs:
         write_lyrics(pdf, font, song)
     print("")
+    if not os.path.exists("pdf/"):
+        os.mkdir("pdf")
     pdf.output(file_name)
     if os.path.exists(artwork):
         os.remove(artwork)
