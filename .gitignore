@@ -175,6 +175,5 @@ cython_debug/
 
 # Custom
 .DS_Store
-pdf/
 *.pdf
 *.swp
