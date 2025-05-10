@@ -5,7 +5,7 @@ Versify is a simple tool generating a neat and nicely designed multipage PDF lyr
 ## 📋 Description
 
 When executed, the user is prompted for an artist name, then an album name. Versify will use the *LyricsGenius* library to search for this album on the [Genius](https://genius.com) website. If found, it will create a list of dictionnaries (one for each song) containing information such as the track number, title, lyrics, and also an URL for the artwork.
-This URL will be used to download temporarily the artwork as an image file, that will be automatically deleted later. After this, Versify will use the *FPDF* library to create a PDF file with a first page containing the album artwork and the tracklist. Then, for each song containing lyrics (instrumental songs are ignored), Versify will create one (or more) page(s) and write the song title and its lyrics. Finally, the PDF file is saved locally in the `pdf/` directory.
+This URL will be used to download temporarily the artwork as an image file, that will be automatically deleted later. After this, Versify will use the *FPDF* library to create a PDF file with a first page containing the album artwork and the tracklist. Then, for each song containing lyrics (instrumental songs are ignored), Versify will create one (or more) page(s) and write the song title and its lyrics. Finally, the PDF file is saved locally in the `pdf/` directory, which is automatically created if not existing.
 
 ## 📂 Project Structure
 
@@ -20,7 +20,7 @@ The project contains several files and directories, which are the following:
 
 ## ⚙️ Installation
 
-In order to install Versify, the three following steps should be done:
+In order to install Versify, the three steps of this guide must be followed:
 
 **1. Cloning the repository**
 
