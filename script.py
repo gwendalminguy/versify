@@ -121,29 +121,8 @@ def create_pdf(artwork, songs, font):
     pdf.set_xy(10, 10)
     pdf.image(artwork, x=30, y=30, w=150)
 
-    # Writing the tracklist on the first page
-    pdf.set_xy(30, 190)
-    pdf.set_font(font, style="B", size=18)
-    pdf.cell(0, 0, text=f"{artist.title()} - {album.title()}")
-    pdf.set_font(font, style="B", size=12)
-    i = 0
-    for song in songs:
-        if song["index"] < 13:
-            pdf.set_xy(30, 200 + i)
-        elif song["index"] < 25:
-            pdf.set_xy(105, 116 + i)
-        else:
-            break
-        try:
-            if len(song["title"]) > 20 and len(songs) >= (song["index"] + 12):
-                pdf.cell(0, 0,  text=f"{song["index"]}. {(song["title"][:20]).upper().strip()}...")
-            elif len(song["title"]) > 20 and song["index"] > 12:
-                pdf.cell(0, 0,  text=f"{song["index"]}. {(song["title"][:20]).upper().strip()}...")
-            else:
-                pdf.cell(0, 0,  text=f"{song["index"]}. {(song["title"]).upper()}")
-        except:
-            pdf.cell(0, 0,  text=f"{song["index"]}.\n")
-        i+= 7
+    # Writing the tracklist on the cover page
+    write_tracklist(pdf, font, songs)
 
     # Writing the lyrics and removing artwork file
     pdf.set_auto_page_break(auto=True, margin=30)
@@ -157,6 +136,40 @@ def create_pdf(artwork, songs, font):
     if os.path.exists(artwork):
         os.remove(artwork)
 
+def write_tracklist(document, font, songs):
+    """
+    Writes the tracklist on the cover page.
+
+    Parameters:
+    document (object): PDF document
+    font (string): font to use
+    songs (list): list of dictionnaries containing song information
+    """
+    artist = songs[0]['artist']
+    album = songs[0]['album']
+
+    document.set_xy(30, 190)
+    document.set_font(font, style="B", size=18)
+    document.cell(0, 0, text=f"{artist.title()} - {album.title()}")
+    document.set_font(font, style="B", size=12)
+    i = 0
+    for song in songs:
+        if song["index"] < 13:
+            document.set_xy(30, 200 + i)
+        elif song["index"] < 25:
+            document.set_xy(105, 116 + i)
+        else:
+            break
+        try:
+            if len(song["title"]) > 20 and len(songs) >= (song["index"] + 12):
+                document.cell(0, 0,  text=f"{song["index"]}. {(song["title"][:20]).upper().strip()}...")
+            elif len(song["title"]) > 20 and song["index"] > 12:
+                document.cell(0, 0,  text=f"{song["index"]}. {(song["title"][:20]).upper().strip()}...")
+            else:
+                document.cell(0, 0,  text=f"{song["index"]}. {(song["title"]).upper()}")
+        except:
+            document.cell(0, 0,  text=f"{song["index"]}.\n")
+        i+= 7
 
 def write_lyrics(document, font, song):
     """
