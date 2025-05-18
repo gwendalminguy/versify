@@ -35,7 +35,7 @@ $ git clone https://github.com/gwendalminguy/tool-versify.git
 Setting a virtual environment is necessary before installing the requirements, and must be done at the root of the Versify directory. This will prevent from installing libraries globally, to avoid potential conflicts. It will also help ensure each library is installed with the right version. Setting a virtual environment can be achieved using the following commands:
 
 ```
-$ cd versify/
+$ cd tool-versify/
 $ python3 -m venv venv
 $ source venv/bin/activate
 ```
