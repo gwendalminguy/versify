@@ -13,10 +13,10 @@ The project contains several files and directories, which are the following:
 
 | Files | Description |
 | :---- | :---------- |
-| [`fonts/`](https://github.com/gwendalminguy/versify/tree/main/fonts) | The directory containing several open source TrueType fonts. |
-| [`graphics/`](https://github.com/gwendalminguy/versify/tree/main/graphics) | The directory containing PNG background images. |
-| [`requirements.txt`](https://github.com/gwendalminguy/versify/blob/main/requirements.txt) | The text file listing requirements for installation. |
-| [`script.py`](https://github.com/gwendalminguy/versify/blob/main/script.py) | The python file containing the script. |
+| [`fonts/`](https://github.com/gwendalminguy/tool-versify/tree/main/fonts) | The directory containing several open source TrueType fonts. |
+| [`graphics/`](https://github.com/gwendalminguy/tool-versify/tree/main/graphics) | The directory containing PNG background images. |
+| [`requirements.txt`](https://github.com/gwendalminguy/tool-versify/blob/main/requirements.txt) | The text file listing requirements for installation. |
+| [`script.py`](https://github.com/gwendalminguy/tool-versify/blob/main/script.py) | The python file containing the script. |
 
 ## ⚙️ Installation
 
@@ -27,7 +27,7 @@ In order to install Versify, the three steps of this guide must be followed:
 To use Versify, this repository must be cloned locally, using the following command:
 
 ```
-$ git clone https://github.com/gwendalminguy/versify.git
+$ git clone https://github.com/gwendalminguy/tool-versify.git
 ```
 
 **2. Setting a virtual environment**
