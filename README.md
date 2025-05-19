@@ -53,7 +53,7 @@ $ pip install -r requirements.txt
 Versify can be launched using the following command:
 
 ```
-$ ./script.py
+$ ./script.py -f <font>
 ```
 
 The user will be prompted for an artist name, then an album name. It can take up to thirty seconds for Versify to find the lyrics and generate the PDF file, please be patient. Once done with Versify, the virtual environment should be disabled:
@@ -64,13 +64,7 @@ $ deactivate
 
 ### Fonts:
 
-Although not required, Versify can be launched with a font other than the default one (which is set to be *dejavusans*). To do so, the desired TrueType font must first be installed in the `fonts/` directory. This font can then be used by calling it as a command-line argument with **-f** or **--font**, followed by the name of the font family (without the extension):
-
-```
-$ ./script.py -f <font>
-```
-
-The `fonts/` directory already contains several usable TrueType fonts, which are the following:
+Although not required, Versify can be launched with a font other than the default one (which is set to be *dejavusans*). To do so, the desired TrueType font must first be installed in the `fonts/` directory. This font can then be used by calling it as a command-line argument with **-f** or **--font**, followed by the name of the font family (without the extension). The `fonts/` directory already contains several usable TrueType fonts, which are the following:
 
 - dejavusans
 - dejavuserif
