@@ -4,8 +4,7 @@ Versify is a simple tool generating a neat and nicely designed multipage PDF lyr
 
 ## 📋 Description
 
-When executed, the user is prompted for an artist name, then an album name. Versify will use the *LyricsGenius* library to search for this album on the [Genius](https://genius.com) website. If found, it will create a list of dictionnaries (one for each song) containing information such as the track number, title, lyrics, and also an URL for the artwork.
-This URL will be used to download temporarily the artwork as an image file, that will be automatically deleted later. After this, Versify will use the *FPDF* library to create a PDF file with a first page containing the album artwork and the tracklist. Then, for each song containing lyrics (instrumental songs are ignored), Versify will create one (or more) page(s) and write the song title and its lyrics. Finally, the PDF file is saved locally in the `pdf/` directory, which is automatically created if not existing.
+When executed, the user is prompted for an artist name, then an album name. Versify will use the *LyricsGenius* library to search for this album on the [Genius](https://genius.com) website. If found, it will create a list of dictionnaries (one for each song) containing information such as the track number, title, lyrics, and also an URL for the artwork. This URL will be used to download temporarily the artwork as an image file, that will be automatically deleted later. After this, Versify will use the *FPDF* library to create a PDF file with a first page containing the album artwork and the tracklist. Then, for each song containing lyrics (instrumental songs are ignored), Versify will create one (or more) page(s) and write the song title and its lyrics. Finally, the PDF file is saved locally in the `pdf/` directory, which is automatically created if not existing.
 
 ## 📂 Project Structure
 
@@ -77,7 +76,7 @@ Although not required, Versify can be launched with a font other than the defaul
 - umpush
 - waree
 
-It can take a while for Versify to execute, since the *LyricsGenius* library makes several API requests and uses *BeautifulSoup* for web-scraping each song's webpage from [Genius](https://genius.com) to find its lyrics. Once done, the script will print to the terminal, for each song, the song title followed by either **Done** or **No Lyrics** when successful.
+It can take a while for Versify to execute, since the *LyricsGenius* library makes several requests and uses *BeautifulSoup* for web-scraping each song's webpage from [Genius](https://genius.com) to find its lyrics. Once done, the script will print to the terminal, for each song, the song title followed by either **Done** or **No Lyrics** when successful.
 
 The script will print **Encoding Error** if *FPDF* wasn't able to write the lyrics with the chosen font. This problem might come from unsupported characters that can't be handled by the font, and can be solved by replacing it with a TrueType font.
 
@@ -89,9 +88,7 @@ In this case, after modifying the images in Adobe Illustrator, they should be ex
 
 ### Warning:
 
-Although a Genius API Client Access Token is provided in Versify, a new one might be required, and can be generated through [Genius API Client Management](https://genius.com/api-clients/new). A Genius account is needed to create a new API Client. The old Client Access Token can then simply be replaced by the new one by changing the value of the *access_token* variable at the beginning of the *main* function of the `script.py` file.
-
-Because of Genius API restrictions, using a VPN while executing Versify might result in a Forbidden Access Error (403), displaying **Genius Request Error** when *LyricsGenius* searches for the lyrics. For the same reasons, executing Versify from a VPS or a GitHub Codespace might result in the same error. Disabling any VPN and executing Versify from a locally installed IDE such as Visual Studio Code should resolve this problem.
+Because of [Genius](https://genius.com) restrictions, using a VPN while executing Versify might result in a Forbidden Access Error (403), displaying **Genius Request Error** when *LyricsGenius* searches for the lyrics. For the same reasons, executing Versify from a VPS or a GitHub Codespace might result in the same error. Disabling any VPN and executing Versify from a locally installed IDE such as Visual Studio Code should resolve this problem.
 
 ## ⚠️ Disclaimer
 
