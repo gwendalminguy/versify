@@ -3,7 +3,6 @@ from lyricsgenius import Genius
 from fpdf import FPDF
 import requests
 import argparse
-import json
 import sys
 import os
 
@@ -12,8 +11,6 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-f", "--font", default="dejavusans", type=str, help="font to use")
     args = parser.parse_args()
-
-    access_token = "x_nSCOcKUKwrG753-sM4DK8HGjs7kEHjJ-pZki5Kt6ja8Ux3sbvYjAKbcPaI4y_v"
     font = (args.font).lower()
 
     try:
@@ -22,18 +19,17 @@ def main():
     except EOFError:
         sys.exit("Script Interruption")
 
-    songs = get_album(artist, album, access_token)
+    songs = get_album(artist, album)
     artwork = download_artwork(songs)
     create_pdf(artwork, songs, font)
 
-def get_album(artist, album, access_token):
+def get_album(artist, album):
     """
     Gets the lyrics for each song from Genius and the artwork URL.
 
     Parameters:
     artist (string): name of the artist
     album (string): name of the album
-    access_token (string): Genius API access token
 
     Return:
     list: list of dictionnaries containing song information
@@ -41,7 +37,7 @@ def get_album(artist, album, access_token):
     if artist == "" or album == "":
         sys.exit("Invalid Artist/Album")
     try:
-        result = Genius(access_token, remove_section_headers=True).search_album(album, artist)
+        result = Genius(".", remove_section_headers=True).search_album(album, artist)
     except:
         sys.exit("Genius Request Error")
     else:
