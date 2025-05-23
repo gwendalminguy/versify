@@ -52,7 +52,7 @@ $ pip install -r requirements.txt
 Versify can be launched using the following command:
 
 ```
-$ ./script.py -f <font>
+$ ./script.py [-f <font>]
 ```
 
 The user will be prompted for an artist name, then an album name. It can take up to thirty seconds for Versify to find the lyrics and generate the PDF file, please be patient. Once done with Versify, the virtual environment should be disabled:
