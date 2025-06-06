@@ -12,6 +12,7 @@ The project contains several files and directories, which are the following:
 
 | Files | Description |
 | :---- | :---------- |
+| `pdf/` | The directory containing final PDF files. |
 | [`fonts/`](https://github.com/gwendalminguy/tool-versify/tree/main/fonts) | The directory containing several open source TrueType fonts. |
 | [`graphics/`](https://github.com/gwendalminguy/tool-versify/tree/main/graphics) | The directory containing PNG background images. |
 | [`requirements.txt`](https://github.com/gwendalminguy/tool-versify/blob/main/requirements.txt) | The text file listing requirements for installation. |
